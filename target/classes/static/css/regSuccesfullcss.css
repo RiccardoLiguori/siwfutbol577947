@@ -1,0 +1,105 @@
+/* Reset di base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Stile del body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #004d00;
+    padding: 10px 20px;
+    margin-bottom: 40px;
+    border-radius: 5px;
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+.soccer-ball-container {
+    display: flex;
+    align-items: center;
+}
+
+.soccer-ball {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #f9c74f;
+}
+
+.welcome-section {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: green;
+    color: white;
+}
+
+.info-section {
+    margin: 2rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+}
+/* Box delle informazioni */
+.info-box {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1.2em;
+}
+
+.info-box span {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.info-box span:first-child {
+    font-weight: bold;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #004d00;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 50px;
+}
+

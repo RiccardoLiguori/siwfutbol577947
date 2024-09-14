@@ -1,0 +1,122 @@
+/* Stile di base */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #004d00;
+    padding: 10px 20px;
+    margin-bottom: 40px;
+    border-radius: 5px;
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+.soccer-ball-container {
+    display: flex;
+    align-items: center;
+}
+
+.soccer-ball {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #f9c74f;
+}
+.hero-section {
+    text-align: center;
+    padding: 50px;
+    background-color: #004d00;
+    color: white;
+}
+
+.video-container {
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+
+/* Container Styling */
+.container {
+    display: flex;
+    justify-content: space-around;
+    margin: 40px auto;
+    max-width: 1000px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    text-align: center;
+}
+
+.card h2 {
+    font-size: 1.8em;
+    color: #004d00;
+    margin-bottom: 20px;
+}
+
+.button {
+    display: inline-block;
+    background-color: #f9c74f;
+    color: #004d00;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #004d00;
+    color: #f9c74f;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #004d00;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 50px;
+}
