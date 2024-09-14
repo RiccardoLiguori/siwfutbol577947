@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Federcalcio</title>
+    <link rel="stylesheet" href="/css/admincss.css">
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="/" class="navbar-brand">Federcalcio</a>
+    <div class="navbar-links">
+        <div class="navbar-links">
+            <a class="nav-link" href="/gestisciSquadra">Gestisci Team</a>
+            <a class="nav-link" href="/giocatori">Giocatori Federcalcio</a>
+            <a class="nav-link" href="/squadre">Visualizza Squadre</a>
+            <div th:if="${userDetails != null}">
+                <span class="nav-link" th:text="${userDetails.username}"></span>
+                <a class="nav-link" href="/logout">(Logout) </a>
+            </div>
+            <div th:if="${userDetails == null}">
+                <a class="nav-link" href="/login">Login</a>
+            </div>
+        </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <h1>Benvenuto nella Federcalcio</h1>
+    <p>Gestisci le squadre del campionato in modo facile e veloce.</p>
+
+    <!-- Video Section -->
+    <div class="video-container">
+        <video controls autoplay muted loop>
+            <source src="images/index.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Federcalcio. Tutti i diritti riservati.</p>
+</footer>
+
+</body>
+</html>

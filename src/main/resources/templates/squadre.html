@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Elenco Squadre - Federcalcio</title>
+    <link rel="stylesheet" href="/css/squadre.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="/" class="navbar-brand">Federcalcio</a>
+    <!--  <div class="soccer-ball-container">
+          <img src="/images/soccer-ball.png" alt="Soccer Ball" class="soccer-ball">
+      </div> -->
+    <div class="navbar-links">
+        <div class="navbar-links">
+            <!-- Link per le funzionalità di amministrazione -->
+            <a class="nav-link" href="/gestisciSquadra">Gestisci Team</a>
+            <a class="nav-link" href="/giocatori">Giocatori Federcalcio</a>
+            <a class="nav-link" href="/squadre">Visualizza Squadre</a>
+            <!-- Se l'utente è autenticato, mostra il suo nome utente e il link di logout -->
+            <div th:if="${userDetails != null}">
+                <span class="nav-link" th:text="${userDetails.username}"></span>
+                <a class="nav-link" href="/logout">(Logout) </a>
+            </div>
+            <!-- Se l'utente non è autenticato, mostra il link di login -->
+            <div th:if="${userDetails == null}">
+                <a class="nav-link" href="/login">Login</a>
+            </div>
+        </div>
+</nav>
+
+
+<!-- Container delle Squadre -->
+<div class="squadre-container">
+    <h1>Elenco delle Squadre</h1>
+    <div class="squadre-grid">
+        <div th:each="squadra : ${squadre}" class="squadra-card">
+            <div class="squadra-logo-container">
+                <img th:src="@{${squadra.imagePath}}" alt="Logo Squadra" class="squadra-logo"/>
+            </div>
+            <h2 th:text="${squadra.nome}"></h2>
+            <p><strong>Anno di Fondazione:</strong> <span th:text="${squadra.annoFondazione}"></span></p>
+            <p><strong>Indirizzo:</strong> <span th:text="${squadra.indirizzoSede}"></span></p>
+            <div class="button-container">
+                <a th:href="@{/squadra/{id}(id=${squadra.id})}" class="btn">Visualizza Dettagli</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Federcalcio. Tutti i diritti riservati.</p>
+</footer>
+
+</body>
+</html>

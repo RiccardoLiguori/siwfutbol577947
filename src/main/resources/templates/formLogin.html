@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Federcalcio - Login</title>
+	<link rel="stylesheet" href="/css/logincss.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+	<a href="/" class="navbar-brand">Federcalcio</a>
+	<!--  <div class="soccer-ball-container">
+          <img src="/images/soccer-ball.png" alt="Soccer Ball" class="soccer-ball">
+      </div> -->
+	<div class="navbar-links">
+		<div class="navbar-links">
+			<!-- Link per le funzionalità di amministrazione -->
+			<a class="nav-link" href="/gestisciSquadra">Gestisci Team</a>
+			<a class="nav-link" href="/giocatori">Giocatori Federcalcio</a>
+			<a class="nav-link" href="/squadre">Visualizza Squadre</a>
+			<!-- Se l'utente è autenticato, mostra il suo nome utente e il link di logout -->
+			<div th:if="${userDetails != null}">
+				<span class="nav-link" th:text="${userDetails.username}"></span>
+				<a class="nav-link" href="/logout">(Logout) </a>
+			</div>
+			<!-- Se l'utente non è autenticato, mostra il link di login -->
+			<div th:if="${userDetails == null}">
+				<a class="nav-link" href="/login">Login</a>
+			</div>
+		</div>
+</nav>
+
+<h1>Login Presidente</h1>
+
+<form th:action="@{/login}" method="POST" class="login-form">
+	<div class="form-group">
+		<label for="username">Username:</label>
+		<input id="username" name="username" type="text" required />
+	</div>
+	<div class="form-group">
+		<label for="password">Password:</label>
+		<input id="password" name="password" type="password" required />
+	</div>
+	<div class="form-group">
+		<span th:if="${param.error != null}" class="error-message">Username o password errati</span>
+	</div>
+	<div class="form-group">
+		<button type="submit" class="login-button">Login</button>
+	</div>
+</form>
+
+<div class="register-link-container">
+	<a th:href="@{/register}" class="register-link">Non hai un account? Registrati</a>
+</div>
+
+</body>
+
+<footer>
+	<p>&copy; 2024 Federcalcio. Tutti i diritti riservati.</p>
+</footer>
+</html>

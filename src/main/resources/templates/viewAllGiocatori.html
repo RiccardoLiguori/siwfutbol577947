@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Visualizza Tutti i Giocatori - Federcalcio</title>
+    <link rel="stylesheet" href="/css/viewAllGiocatoricss.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="/" class="navbar-brand">Federcalcio</a>
+    <!--  <div class="soccer-ball-container">
+          <img src="/images/soccer-ball.png" alt="Soccer Ball" class="soccer-ball">
+      </div> -->
+    <div class="navbar-links">
+        <div class="navbar-links">
+            <!-- Link per le funzionalità di amministrazione -->
+            <a class="nav-link" href="/gestisciSquadra">Gestisci Team</a>
+            <a class="nav-link" href="/giocatori">Giocatori Federcalcio</a>
+            <a class="nav-link" href="/squadre">Visualizza Squadre</a>
+            <!-- Se l'utente è autenticato, mostra il suo nome utente e il link di logout -->
+            <div th:if="${userDetails != null}">
+                <span class="nav-link" th:text="${userDetails.username}"></span>
+                <a class="nav-link" href="/logout">(Logout) </a>
+            </div>
+            <!-- Se l'utente non è autenticato, mostra il link di login -->
+            <div th:if="${userDetails == null}">
+                <a class="nav-link" href="/login">Login</a>
+            </div>
+        </div>
+</nav>
+
+<!-- Contenuto Principale -->
+<h1>Elenco di Tutti i Giocatori</h1>
+
+<div class="giocatori-container">
+    <div th:each="giocatore : ${giocatori}" class="giocatore-card">
+        <h2 th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}"></h2>
+        <p><strong>Ruolo:</strong> <span th:text="${giocatore.ruolo}"></span></p>
+        <p><strong>Data di Nascita:</strong> <span th:text="${giocatore.dataNascita}"></span></p>
+        <p><strong>Luogo di Nascita:</strong> <span th:text="${giocatore.luogoNascita}"></span></p>
+
+        <div th:if="${giocatore.giocatoreTesserato != null}">
+            <h3>Esperienze Passate</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>Squadra</th>
+                    <th>Data Inizio</th>
+                    <th>Data Fine</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tesserato : ${giocatore.giocatoreTesserato}">
+                    <td th:text="${tesserato.squadra.nome}"></td>
+                    <td th:text="${tesserato.dataInizioTesseramento}"></td>
+                    <td th:text="${tesserato.dataFineTesseramento != null ? tesserato.dataFineTesseramento : 'Tesseramento attivo'}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Federcalcio. Tutti i diritti riservati.</p>
+</footer>
+
+</body>
+</html>

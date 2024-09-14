@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Elenco Squadre - Federcalcio</title>
+    <link rel="stylesheet" href="/css/squadrecss.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="/" class="navbar-brand">Federcalcio</a>
+    <div class="navbar-links">
+        <!-- Link per le funzionalità di amministrazione -->
+        <a href="/admin/createSquadra" class="nav-link">Crea Squadra</a>
+        <a href="/admin/viewSquadra" class="nav-link">Aggiorna Squadra</a>
+        <a href="/admin/nuovoGiocatore" class="nav-link">Nuovo Giocatore</a>
+        <!-- Se l'utente è autenticato, mostra il suo nome utente e il link di logout -->
+        <div th:if="${userDetails != null}">
+            <span class="nav-link" th:text="${userDetails.username}"></span>
+            <a class="nav-link" href="/logout">(Logout) </a>
+        </div>
+        <!-- Se l'utente non è autenticato, mostra il link di login -->
+        <div th:if="${userDetails == null}">
+            <a class="nav-link" href="/login">Login</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Contenuto Principale -->
+<div class="squadre-container">
+    <h1>Elenco delle Squadre</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Logo</th>
+            <th>Nome</th>
+            <th>Anno di Fondazione</th>
+            <th>Indirizzo Sede</th>
+            <th>Presidente</th>
+            <th>Azioni</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="squadra : ${squadre}">
+            <!-- Colonna per il logo -->
+            <td>
+                <img th:src="@{${squadra.imagePath}}" alt="Logo Squadra" class="team-logo" />
+            </td>
+            <td th:text="${squadra.nome}"></td>
+            <td th:text="${squadra.annoFondazione}"></td>
+            <td th:text="${squadra.indirizzoSede}"></td>
+            <td th:text="${squadra.presidente.nome} + ' ' + ${squadra.presidente.cognome}"></td>
+            <td>
+                <a th:href="@{/admin/updateSquadra/{id}(id=${squadra.id})}" class="btn">Modifica Squadra</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

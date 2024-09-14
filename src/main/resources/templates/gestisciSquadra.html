@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestisci Squadra - Federcalcio</title>
+    <link rel="stylesheet" href="/css/gestisciSquadracss.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="/" class="navbar-brand">Federcalcio</a>
+    <div class="navbar-links">
+        <div class="navbar-links">
+            <!-- Link per le funzionalità di amministrazione -->
+            <a class="nav-link" href="/gestisciSquadra">Gestisci Team</a>
+            <a class="nav-link" href="/giocatori">Giocatori Federcalcio</a>
+            <a class="nav-link" href="/squadre">Visualizza Squadre</a>
+            <!-- Se l'utente è autenticato, mostra il suo nome utente e il link di logout -->
+            <div th:if="${userDetails != null}">
+                <span class="nav-link" th:text="${userDetails.username}"></span>
+                <a class="nav-link" href="/logout">(Logout)</a>
+            </div>
+            <!-- Se l'utente non è autenticato, mostra il link di login -->
+            <div th:if="${userDetails == null}">
+                <a class="nav-link" href="/login">Login</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Contenuto Principale -->
+<div th:if="${noSquadra}">
+    <h1>Non hai una squadra assegnata</h1>
+    <p>Contatta l'amministrazione per creare o assegnare una squadra.</p>
+</div>
+
+<div th:if="${!noSquadra}">
+    <!-- Visualizzazione del Logo Squadra -->
+    <div class="team-header">
+        <img th:src="@{${squadra.imagePath}}" alt="Logo Squadra" class="team-logo" />
+        <h1>Gestisci Squadra: <span th:text="${squadra.nome}"></span></h1>
+    </div>
+
+    <h2>Giocatori Tesserati</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Ruolo</th>
+            <th>Data Inizio Tesseramento</th>
+            <th>Data Fine Tesseramento</th>
+            <th>Azioni</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="giocatoreTesserato : ${giocatoriTesseratiAttivi}">
+            <td th:text="${giocatoreTesserato.giocatore.nome}"></td>
+            <td th:text="${giocatoreTesserato.giocatore.cognome}"></td>
+            <td th:text="${giocatoreTesserato.giocatore.ruolo}"></td>
+            <td th:text="${giocatoreTesserato.dataInizioTesseramento}"></td>
+            <td th:text="${giocatoreTesserato.dataFineTesseramento != null ? giocatoreTesserato.dataFineTesseramento : 'Tesseramento attivo'}"></td>
+            <td>
+                <form th:action="@{/rimuoviGiocatore}" method="post">
+                    <input type="hidden" name="giocatoreTesseratoId" th:value="${giocatoreTesserato.id}" />
+                    <button type="submit">Termina Tesseramento</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Aggiungi Giocatore alla Squadra</h2>
+    <form th:action="@{/tesseraGiocatore}" method="post">
+        <div>
+            <label for="giocatore">Seleziona Giocatore:</label>
+            <select id="giocatore" name="giocatoreId" required>
+                <option th:each="giocatore : ${giocatoriNonTesserati}"
+                        th:value="${giocatore.id}"
+                        th:text="${giocatore.nome} + ' ' + ${giocatore.cognome} + ' (' + ${giocatore.ruolo} + ')'">
+                </option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Tessera Giocatore</button>
+        </div>
+    </form>
+</div>
+
+</body>
+
+<footer>
+    <p>&copy; 2024 Federcalcio. Tutti i diritti riservati.</p>
+</footer>
+
+</html>

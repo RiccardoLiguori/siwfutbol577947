@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dettagli Squadra - Federcalcio</title>
+    <link rel="stylesheet" href="/css/dettagliSquadra.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="/" class="navbar-brand">Federcalcio</a>
+    <!--  <div class="soccer-ball-container">
+          <img src="/images/soccer-ball.png" alt="Soccer Ball" class="soccer-ball">
+      </div> -->
+    <div class="navbar-links">
+        <div class="navbar-links">
+            <!-- Link per le funzionalità di amministrazione -->
+            <a class="nav-link" href="/gestisciSquadra">Gestisci Team</a>
+            <a class="nav-link" href="/giocatori">Giocatori Federcalcio</a>
+            <a class="nav-link" href="/squadre">Visualizza Squadre</a>
+            <!-- Se l'utente è autenticato, mostra il suo nome utente e il link di logout -->
+            <div th:if="${userDetails != null}">
+                <span class="nav-link" th:text="${userDetails.username}"></span>
+                <a class="nav-link" href="/logout">(Logout) </a>
+            </div>
+            <!-- Se l'utente non è autenticato, mostra il link di login -->
+            <div th:if="${userDetails == null}">
+                <a class="nav-link" href="/login">Login</a>
+            </div>
+        </div>
+</nav>
+
+
+<!-- Dettagli Squadra -->
+<div class="dettagli-squadra-container">
+    <div class="squadra-header">
+        <img th:src="@{${squadra.imagePath}}" alt="Logo Squadra" class="squadra-logo"/>
+        <h1 th:text="${squadra.nome}"></h1>
+    </div>
+    <p><strong>Anno di Fondazione:</strong> <span th:text="${squadra.annoFondazione}"></span></p>
+    <p><strong>Indirizzo:</strong> <span th:text="${squadra.indirizzoSede}"></span></p>
+    <p><strong>Presidente:</strong> <span th:text="${presidente.nome} + ' ' + ${presidente.cognome}"></span></p>
+
+    <h2>Giocatori</h2>
+    <ul>
+        <li th:each="giocatore : ${giocatori}">
+            <span th:text="${giocatore.giocatore.nome} + ' ' + ${giocatore.giocatore.cognome} + ' - ' + ${giocatore.giocatore.ruolo}"></span>
+        </li>
+    </ul>
+    <p><strong>Numero giocatori:</strong> <span th:text="${giocatori.size()}"></span></p>
+</div>
+
+</body>
+
+<footer>
+    <c>&copy; 2024 Federcalcio. Tutti i diritti riservati.</c>
+</footer>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nuovo Giocatore - Federcalcio</title>
+    <link rel="stylesheet" href="/css/giocatorecss.css">
+</head>
+<body>
+
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="/" class="navbar-brand">Federcalcio</a>
+    <!--  <div class="soccer-ball-container">
+          <img src="/images/soccer-ball.png" alt="Soccer Ball" class="soccer-ball">
+      </div> -->
+    <div class="navbar-links">
+        <div class="navbar-links">
+            <!-- Link per le funzionalità di amministrazione -->
+            <a href="/admin/createSquadra" class="nav-link">Crea Squadra</a>
+            <a href="/admin/viewSquadra" class="nav-link">Aggiorna Squadra</a>
+            <a href="/admin/nuovoGiocatore" class="nav-link">Nuovo Giocatore</a>
+            <!-- Se l'utente è autenticato, mostra il suo nome utente e il link di logout -->
+            <div th:if="${userDetails != null}">
+                <span class="nav-link" th:text="${userDetails.username}"></span>
+                <a class="nav-link" href="/logout">(Logout) </a>
+            </div>
+            <!-- Se l'utente non è autenticato, mostra il link di login -->
+            <div th:if="${userDetails == null}">
+                <a class="nav-link" href="/login">Login</a>
+            </div>
+        </div>
+</nav>
+
+<!-- Contenuto Principale -->
+<div class="form-container">
+    <h1>Inserisci Nuovo Giocatore</h1>
+    <form th:action="@{/admin/nuovoGiocatore}" th:object="${giocatore}" method="post">
+        <div>
+
+            <label for="nome">Nome:</label>
+            <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="error"></span>
+            <input type="text" id="nome" th:field="*{nome}" placeholder="Inserisci il nome" required />
+
+        </div>
+        <div>
+            <label for="cognome">Cognome:</label>
+            <span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}" class="error"></span>
+            <input type="text" id="cognome" th:field="*{cognome}" placeholder="Inserisci il cognome" required />
+
+        </div>
+        <div>
+            <label for="dataNascita">Data di Nascita:</label>
+            <span th:if="${#fields.hasErrors('dataNascita')}" th:errors="*{dataNascita}" class="error"></span>
+            <input type="date" id="dataNascita" th:field="*{dataNascita}" required />
+
+        </div>
+        <div>
+            <label for="luogoNascita">Luogo di Nascita:</label>
+            <span th:if="${#fields.hasErrors('luogoNascita')}" th:errors="*{luogoNascita}" class="error"></span>
+            <input type="text" id="luogoNascita" th:field="*{luogoNascita}" placeholder="Inserisci il luogo di nascita" required />
+
+        </div>
+        <div>
+            <label for="ruolo">Ruolo:</label>
+            <select id="ruolo" th:field="*{ruolo}" required>
+                <option value="" disabled selected>Seleziona il ruolo</option>
+                <option value="Difensore">Difensore</option>
+                <option value="Attaccante">Attaccante</option>
+                <option value="Centrocampista">Centrocampista</option>
+                <option value="Portiere">Portiere</option>
+            </select>
+        </div>
+        <div class="form-actions">
+            <button type="submit">Salva</button>
+
+        </div>
+    </form>
+
+</div>
+<footer>
+    <p>&copy; 2024 Federcalcio. Tutti i diritti riservati.</p>
+</footer>
+</body>
+</html>

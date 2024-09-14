@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Federcalcio - Admin</title>
+    <link rel="stylesheet" href="/css/admincss.css">
+</head>
+<body>
+
+
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="/" class="navbar-brand">Federcalcio</a>
+    <!--  <div class="soccer-ball-container">
+          <img src="/images/soccer-ball.png" alt="Soccer Ball" class="soccer-ball">
+      </div> -->
+    <div class="navbar-links">
+        <div class="navbar-links">
+            <!-- Link per le funzionalità di amministrazione -->
+            <a href="/admin/createSquadra" class="nav-link">Crea Squadra</a>
+            <a href="/admin/viewSquadra" class="nav-link">Aggiorna Squadra</a>
+            <a href="/admin/nuovoGiocatore" class="nav-link">Nuovo Giocatore</a>
+            <!-- Se l'utente è autenticato, mostra il suo nome utente e il link di logout -->
+            <div th:if="${userDetails != null}">
+                <span class="nav-link" th:text="${userDetails.username}"></span>
+                <a class="nav-link" href="/logout">(Logout) </a>
+            </div>
+            <!-- Se l'utente non è autenticato, mostra il link di login -->
+            <div th:if="${userDetails == null}">
+                <a class="nav-link" href="/login">Login</a>
+            </div>
+        </div>
+</nav>
+
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <h1>Benvenuto Admin nella Federcalcio</h1>
+    <p>Gestisci le squadre del campionato in modo facile e veloce.</p>
+</div>
+
+
+<div class="container">
+    <div class="card">
+        <h2>Crea una nuova squadra</h2>
+        <a href="/admin/createSquadra" class="button">Crea Squadra</a>
+    </div>
+    <div class="card">
+        <h2>Aggiorna una squadra esistente</h2>
+        <a href="/admin/viewSquadra" class="button">Aggiorna Squadra</a>
+    </div>
+    <div class="card">
+        <h2>Aggiungi un nuovo giocatore</h2>
+        <a href="/admin/nuovoGiocatore" class="button">Nuovo Giocatore</a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Federcalcio. Tutti i diritti riservati.</p>
+</footer>
+
+</body>
+</html>

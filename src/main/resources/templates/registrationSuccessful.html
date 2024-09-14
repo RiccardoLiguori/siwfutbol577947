@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Federcalcio - Registrazione Effettuata</title>
+	<link rel="stylesheet" href="css/regSuccesfullcss.css" />
+</head>
+
+<body>
+<!-- Navbar -->
+<nav class="navbar">
+	<a href="/" class="navbar-brand">Federcalcio</a>
+	<div class="navbar-links">
+		<!-- Link per le funzionalità di amministrazione -->
+		<a class="nav-link" href="/gestisciSquadra">Gestisci Team</a>
+		<a class="nav-link" href="/giocatori">Giocatori Federcalcio</a>
+		<a class="nav-link" href="/squadre">Visualizza Squadre</a>
+		<!-- Se l'utente è autenticato, mostra il suo nome utente e il link di logout -->
+		<div th:if="${userDetails != null}">
+			<span class="nav-link" th:text="${userDetails.username}"></span>
+			<a class="nav-link" href="/logout">(Logout)</a>
+		</div>
+		<!-- Se l'utente non è autenticato, mostra il link di login -->
+		<div th:if="${userDetails == null}">
+			<a class="nav-link" href="/login">Login</a>
+		</div>
+	</div>
+</nav>
+
+<!-- Messaggio di Benvenuto -->
+<section class="welcome-section">
+	<h1>Congratulazioni Presidente, ti sei registrato con successo!</h1><br>
+	<i class="welcome-message">Benvenuto nella Federcalcio! Siamo felici di averti con noi. Da qui potrai iniziare a gestire la tua squadra, creare nuove strategie e esplorare il mondo del calcio professionale.</i>
+</section>
+
+
+
+<!-- Box con le informazioni sul Presidente --><br></br>
+<div class="info-box">
+	<span>Nome:</span>
+	<span th:text="${presidente.nome}"></span>
+</div>
+<div class="info-box">
+	<span>Cognome:</span>
+	<span th:text="${presidente.cognome}"></span>
+</div>
+<div class="info-box">
+	<span>Data di Registrazione:</span>
+	<span>
+            <!-- Inserisci la data di oggi -->
+            <script>
+                const today = new Date();
+				const options = { year: 'numeric', month: 'long', day: 'numeric' };
+				document.write(today.toLocaleDateString('it-IT', options));
+            </script>
+        </span>
+</div>
+
+<!-- Footer -->
+<footer>
+	<p>&copy; 2024 Federcalcio. Tutti i diritti riservati.</p>
+</footer>
+</body>
+
+</html>

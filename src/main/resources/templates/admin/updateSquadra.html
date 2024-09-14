@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Aggiorna Squadra - Federcalcio</title>
+    <link rel="stylesheet" href="/css/updateSquadra.css">
+</head>
+<body>
+
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="/" class="navbar-brand">Federcalcio</a>
+    <!--  <div class="soccer-ball-container">
+          <img src="/images/soccer-ball.png" alt="Soccer Ball" class="soccer-ball">
+      </div> -->
+    <div class="navbar-links">
+        <div class="navbar-links">
+            <!-- Link per le funzionalità di amministrazione -->
+            <a href="/admin/createSquadra" class="nav-link">Crea Squadra</a>
+            <a href="/admin/viewSquadra" class="nav-link">Aggiorna Squadra</a>
+            <a href="/admin/nuovoGiocatore" class="nav-link">Nuovo Giocatore</a>
+            <!-- Se l'utente è autenticato, mostra il suo nome utente e il link di logout -->
+            <div th:if="${userDetails != null}">
+                <span class="nav-link" th:text="${userDetails.username}"></span>
+                <a class="nav-link" href="/logout">(Logout) </a>
+            </div>
+            <!-- Se l'utente non è autenticato, mostra il link di login -->
+            <div th:if="${userDetails == null}">
+                <a class="nav-link" href="/login">Login</a>
+            </div>
+        </div>
+</nav>
+
+
+<!-- Form di Aggiornamento Squadra -->
+<div class="form-container">
+    <h1>Aggiorna Squadra</h1>
+    <form th:action="@{/admin/updateSquadra}" th:object="${squadra}" method="post" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}" /> <!-- ID nascosto della squadra -->
+
+        <!-- Nome della squadra, non modificabile -->
+        <div>
+            <label for="nome">Nome Squadra</label>
+            <input type="text" id="nome" th:field="*{nome}" readonly />
+        </div>
+
+        <!-- Anno di fondazione, non modificabile -->
+        <div>
+            <label for="annoFondazione">Anno di Fondazione</label>
+            <input type="text" id="annoFondazione" th:field="*{annoFondazione}" readonly />
+        </div>
+
+        <!-- Indirizzo della sede, non modificabile -->
+        <div>
+            <label for="indirizzoSede">Indirizzo della Sede</label>
+            <input type="text" id="indirizzoSede" th:field="*{indirizzoSede}" readonly />
+        </div>
+
+        <!-- Selezione del presidente -->
+        <div>
+            <label for="presidente">Nuovo Presidente</label>
+            <select id="presidente" th:field="*{presidente.id}" required>
+                <option th:each="presidente : ${presidentiDisponibili}"
+                        th:value="${presidente.id}"
+                        th:text="${presidente.id == presidenteAttuale.id ? presidente.nome + ' ' + presidente.cognome + ' (attuale)' : presidente.nome + ' ' + presidente.cognome}">
+                </option>
+            </select>
+        </div>
+
+        <!-- Campo per l'upload del logo della squadra -->
+        <div>
+            <label for="immagine">Carica Immagine:</label>
+            <p>Se non selezioni un nuovo logo, confermi il logo attuale!</p>
+            <input type="file" id="immagine" name="immagine" />
+        </div>
+
+        <!-- Bottone per l'aggiornamento -->
+        <div>
+            <button type="submit">Aggiorna Squadra</button>
+        </div>
+    </form>
+</div>
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 Federcalcio. Tutti i diritti riservati.</p>
+</footer>
+
+</body>
+</html>

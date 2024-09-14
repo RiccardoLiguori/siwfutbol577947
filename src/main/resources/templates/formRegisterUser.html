@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Registrazione Presidente - Federcalcio</title>
+	<link rel="stylesheet" href="/css/registercss.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+	<a href="/" class="navbar-brand">Federcalcio</a>
+	<div class="navbar-links">
+		<a class="nav-link" href="/gestisciSquadra">Gestisci Team</a>
+		<a class="nav-link" href="/giocatori">Giocatori Federcalcio</a>
+		<a class="nav-link" href="/squadre">Visualizza Squadre</a>
+		<div th:if="${userDetails != null}">
+			<span class="nav-link" th:text="${userDetails.username}"></span>
+			<a class="nav-link" href="/logout">(Logout)</a>
+		</div>
+		<div th:if="${userDetails == null}">
+			<a class="nav-link" href="/login">Login</a>
+		</div>
+	</div>
+</nav>
+
+<!-- Form di Registrazione -->
+<h1>Registrazione nuovo Presidente</h1>
+<form th:action="@{/register}" method="POST">
+	<!-- Sezione Dati Presidente -->
+	<div class="form-section">
+		<h2>Dati Presidente</h2>
+		<div class="form-group">
+			<label>Nome</label>
+			<input type="text" placeholder="Nome" required th:field="${presidente.nome}" />
+			<span th:if="${#fields.hasErrors('presidente.nome')}" th:errors="*{presidente.nome}" class="error"></span>
+		</div>
+		<div class="form-group">
+			<label>Cognome</label>
+			<input type="text" placeholder="Cognome" required th:field="${presidente.cognome}" />
+			<span th:if="${#fields.hasErrors('presidente.cognome')}" th:errors="*{presidente.cognome}" class="error"></span>
+		</div>
+		<div class="form-group">
+			<label>Codice Fiscale</label>
+			<input type="text" placeholder="Codice Fiscale" required th:field="${presidente.codiceFiscale}" />
+			<span th:if="${#fields.hasErrors('presidente.codiceFiscale')}" th:errors="*{presidente.codiceFiscale}" class="error"></span>
+		</div>
+		<div class="form-group">
+			<label>Data di Nascita</label>
+			<input type="date" required th:field="${presidente.dataNascita}" />
+			<span th:if="${#fields.hasErrors('presidente.dataNascita')}" th:errors="*{presidente.dataNascita}" class="error"></span>
+		</div>
+		<div class="form-group">
+			<label>Luogo di Nascita</label>
+			<input type="text" placeholder="Luogo di Nascita" required th:field="${presidente.luogoNascita}" />
+			<span th:if="${#fields.hasErrors('presidente.luogoNascita')}" th:errors="*{presidente.luogoNascita}" class="error"></span>
+		</div>
+	</div>
+
+	<div class="form-section">
+		<h2>Credenziali di Accesso</h2>
+		<div class="form-group">
+			<label>Username</label>
+			<input type="text" placeholder="Username" required th:field="${credentials.username}" />
+			<span th:if="${#fields.hasErrors('credentials.username')}" th:errors="*{credentials.username}" class="error"></span>
+		</div>
+		<div class="form-group">
+			<label>Password</label>
+			<input type="password" placeholder="Password" required th:field="${credentials.password}" />
+			<span th:if="${#fields.hasErrors('credentials.password')}" th:errors="*{credentials.password}" class="error"></span>
+		</div>
+	</div>
+
+
+	<!-- Bottone di Registrazione -->
+	<div class="form-group">
+		<button type="submit">Registra</button>
+	</div>
+</form>
+
+<footer>
+	<p>&copy; 2024 Federcalcio. Tutti i diritti riservati.</p>
+</footer>
+</body>
+</html>
