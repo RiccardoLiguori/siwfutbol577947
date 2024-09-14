@@ -1,0 +1,142 @@
+/* Reset di base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Stile del body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #004d00;
+    padding: 10px 20px;
+    margin-bottom: 40px;
+    border-radius: 5px;
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+.soccer-ball-container {
+    display: flex;
+    align-items: center;
+}
+
+.soccer-ball {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #f9c74f;
+}
+
+/* Stile del titolo */
+h1 {
+    color: #004d00;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Stile del form */
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+}
+
+/* Stile del pulsante di login */
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #004d00;
+    color: white;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #f9c74f;
+    color: #004d00;
+}
+
+/* Stile del link di registrazione */
+.register-link-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link {
+    color: #004d00;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.register-link:hover {
+    color: #f9c74f;
+}
+/* Footer Styling */
+footer {
+    background-color: #004d00;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 50px;
+}
